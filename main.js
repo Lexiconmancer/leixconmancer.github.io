@@ -1,3 +1,9 @@
+/* Puppy Idle
+
+    This program is free software released under the terms of the GNU General Public License as published by the Free Software Foundation <https://fsf.org/>
+
+    Special Thanks to: 
+    Sam, dev of Clicker Ultimate <https://clickerultimate.github.io/> for beautiful code to read, which was immensely helpful while learning during this project.
 
 /* TODO
 make sniff its own separate clickable
@@ -17,14 +23,13 @@ resource: learning (good boy!, etc)
 */
 
 /*
-Load file when page opens
+TODO
+fix save/load
 */
-window.onload = load
 
 /*
     boops and sniffs
 */
-
 var boops = 0;
 function boopsClick(bn){
     boops = boops + bn;
@@ -44,7 +49,6 @@ function buySniffs(){
     document.getElementById('sniffsCost').innerHTML = nextSniffsCost    //updates displayed boop cost
 };
 
-
 /*
 Main game loop
 */
@@ -55,7 +59,7 @@ window.setInterval(function(){
 }, 1000);
 
 /*
-Decimal display
+Prettify decimal display
 */
 function prettify(input){
     var output = Math.round(input * 1000000)/1000000;
@@ -63,21 +67,25 @@ function prettify(input){
 }
 
 /*
+CURRENTLY NOT WORKING AS INTENDED
 localStorage Saving
 */
-
-var save = {
-    boops: boops,
-    sniffs: sniffs,
-    prestige: prestige
+function save(){
+    var save = {
+        boops: boops,
+        sniffs: sniffs
+        /* prestige: prestige */
+    }
+    localStorage.setItem("save",JSON.stringify(save));
 }
-localStorage.setItem("save",JSON.stringify(save));
 
 /*
+CURRENTLY NOT WORKING AS INTENDED
 localStorage Loading
 */
 function load(){
 var savegame = JSON.parse(localStorage.getItem("save"));
 if (typeof savegame.boops !== "undefined") boops = savegame.boops;
 if (typeof savegame.sniffs !== "undefined") sniffs = savegame.sniffs;
+/* if (typeof savegame.prestige !== "undefined") prestige = savegame.prestige; */
 }
